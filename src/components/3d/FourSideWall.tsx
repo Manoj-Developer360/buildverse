@@ -32,8 +32,8 @@ export function FourSideWall({
       <group>
         {/* North wall */}
         <Wall 
-          start={new Vector3(X1, 0, Z2)}
-          end={new Vector3(X1, 0, Z1)}
+          start={new Vector3(-1650, 0, 2505)}
+          end={new Vector3(-1650, 0, -2800)}
           height={WALL_HEIGHT}
           thickness={WALL_THICKNESS}
           color="#8d6e63"
@@ -41,8 +41,8 @@ export function FourSideWall({
         
         {/* South wall */}
         <Wall 
-          start={new Vector3(X2, 0, Z2)}
-          end={new Vector3(X2, 0, Z1)}
+          start={new Vector3(1840, 0, 2505)}
+          end={new Vector3(1840, 0, -2800)}
           height={WALL_HEIGHT}
           thickness={WALL_THICKNESS}
           color="#8d6e63"
@@ -50,16 +50,16 @@ export function FourSideWall({
         
         {/* East wall split in two */}
         <Wall 
-          start={new Vector3(X1, 0, Z2)}
-          end={new Vector3(245, 0, Z2)}
+          start={new Vector3(-1650, 0, 2505)}
+          end={new Vector3(520, 0, 2505)}
           height={WALL_HEIGHT}
           thickness={WALL_THICKNESS}
           color="#8d6e63"
         />
 
         <Wall 
-          start={new Vector3(800, 0, Z2)}
-          end={new Vector3(X2, 0, Z2)}
+          start={new Vector3(1210, 0, 2505)}
+          end={new Vector3(1840, 0, 2505)}
           height={WALL_HEIGHT}
           thickness={WALL_THICKNESS}
           color="#8d6e63"
@@ -67,8 +67,8 @@ export function FourSideWall({
         
         {/* West wall */}
         <Wall 
-          start={new Vector3(X1, 0, Z1)}
-          end={new Vector3(X2, 0, Z1)}
+          start={new Vector3(-1650, 0, -2800)}
+          end={new Vector3(1840, 0, -2800)}
           height={WALL_HEIGHT}
           thickness={WALL_THICKNESS}
           color="#8d6e63"
@@ -87,31 +87,31 @@ export function FourSideWall({
         />
          */}
         {/* South fence */}
-        <Fence 
+        {/* <Fence 
           start={new Vector3(X1, 0, Z1)}
           end={new Vector3(X2, 0, Z1)}
           height={FENCE_HEIGHT}
           postSpacing={FENCE_SPACING}
           color="#8B4513"
-        />
+        /> */}
         
         {/* East fence */}
-        <Fence 
+        {/* <Fence 
           start={new Vector3(X2, 0, Z2)}
           end={new Vector3(X2, 0, Z1)}
           height={FENCE_HEIGHT}
           postSpacing={FENCE_SPACING}
           color="#8B4513"
-        />
+        /> */}
         
         {/* West fence */}
-        <Fence 
+        {/* <Fence 
           start={new Vector3(X1, 0, Z2)}
           end={new Vector3(X1, 0, Z1)}
           height={FENCE_HEIGHT}
           postSpacing={FENCE_SPACING}
           color="#8B4513"
-        />
+        /> */}
       </group>
     </>
   );
