@@ -40,7 +40,7 @@ const ReportsPage: React.FC = () => {
             <select
               value={reportType}
               onChange={(e) => setReportType(e.target.value)}
-              className="border p-2 rounded"
+             className="border p-2 rounded w-35 bg-white text-black"
             >
               <option value="PDF">PDF</option>
               <option value="CSV">CSV</option>
