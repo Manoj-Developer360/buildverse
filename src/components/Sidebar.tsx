@@ -30,7 +30,7 @@ export function Sidebar() {
           <FileText className="h-4 w-4" />
           {sidebarExpanded && <span className="ml-2">Details</span>}
         </Link>
-        {/* <Link to="/reports" className={`flex items-center p-2 rounded-lg ${location.pathname === '/reports' ? 'bg-accent' : ''}`}>
+        <Link to="/reports" className={`flex items-center p-2 rounded-lg ${location.pathname === '/reports' ? 'bg-accent' : ''}`}>
           <FileText className="h-4 w-4" />
           {sidebarExpanded && <span className="ml-2">Reports</span>}
         </Link>
@@ -41,7 +41,7 @@ export function Sidebar() {
         <Link to="/iot" className={`flex items-center p-2 rounded-lg ${location.pathname === '/iot' ? 'bg-accent' : ''}`}>
           <Settings className="h-4 w-4" />
           {sidebarExpanded && <span className="ml-2">IoT Integrations</span>}
-        </Link> */}
+        </Link>
         <Link to="/settings" className={`flex items-center p-2 rounded-lg ${location.pathname === '/settings' ? 'bg-accent' : ''}`}>
           <Settings className="h-4 w-4" />
           {sidebarExpanded && <span className="ml-2">Settings</span>}

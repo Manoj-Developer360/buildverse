@@ -62,7 +62,7 @@ const IoTPage: React.FC = () => {
               <select
                 value={sensorType}
                 onChange={(e) => setSensorType(e.target.value)}
-                className="border p-2 rounded w-full"
+                className="border p-2 rounded w-full bg-white text-black"
               >
                 <option value="Temperature Sensor">Temperature Sensor</option>
                 <option value="Water Sensor">Water Sensor</option>
@@ -75,7 +75,7 @@ const IoTPage: React.FC = () => {
                 type="text"
                 value={sensorLocation}
                 onChange={(e) => setSensorLocation(e.target.value)}
-                className="border p-2 rounded w-full"
+                className="border p-2 rounded w-full bg-white text-black"
                 placeholder="Enter sensor location"
               />
             </div>
@@ -86,7 +86,7 @@ const IoTPage: React.FC = () => {
                   type="number"
                   value={sensorThreshold || ''}
                   onChange={(e) => setSensorThreshold(Number(e.target.value))}
-                  className="border p-2 rounded w-full"
+                  className="border p-2 rounded w-full bg-white text-black"
                   placeholder="Enter threshold value"
                 />
               </div>
@@ -98,7 +98,7 @@ const IoTPage: React.FC = () => {
                   type="text"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="border p-2 rounded w-full"
+                  className="border p-2 rounded w-full bg-white text-black"
                   placeholder="Enter username"
                 />
               </div>
@@ -108,7 +108,7 @@ const IoTPage: React.FC = () => {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="border p-2 rounded w-full"
+                  className="border p-2 rounded w-full bg-white text-black"
                   placeholder="Enter password"
                 />
               </div>
@@ -119,7 +119,7 @@ const IoTPage: React.FC = () => {
                 type="text"
                 value={accessUrl}
                 onChange={(e) => setAccessUrl(e.target.value)}
-                className="border p-2 rounded w-full"
+                className="border p-2 rounded w-full bg-white text-black"
                 placeholder="Enter access URL"
               />
             </div>
