@@ -376,7 +376,7 @@ export function Viewer3D({
           nodeVisibility={nodeVisibility}
         /> */}
 
-        <InteractiveModel
+        {/* <InteractiveModel
           position={[30, 210, -150]}
           title="Office"
           details="The college office is the centralized administrative hub that streamlines operations, 
@@ -405,54 +405,73 @@ export function Viewer3D({
           details=" A dynamic technology center featuring advanced computing and cybersecurity resources for Computer Science,
            AI, and related fields."
           number="4"
-        />
+        /> */}
 
           <GLTFModelLoader
           modelPath="building.glb" // Path to the GLTF model
-          position={[-210, -49, -200]} // Adjust position as needed
+          position={[-700, -49, 400]} // Adjust position as needed
           rotation={[0, 3.14, 0]} // Adjust rotation as needed
-          scale={600} // Adjust scale as needed
+          scale={800} // Adjust scale as needed
           visible={true} // {isVisible(`${houseId}-restaurant`)} // Control visibility
           onClick={(partName) => console.log(`Clicked on: ${partName}`)} // Handle click
         />
 
 
-        <GLTFModelLoader
+        {/* <GLTFModelLoader
           modelPath="/gate.glb" // Path to the GLTF model
           position={[500, -50, 900]} // Adjust position as needed
           rotation={[0, 0, 0]} // Adjust rotation as needed
           scale={250} // Adjust scale as needed
           visible={true} // {isVisible(`${houseId}-restaurant`)} // Control visibility
           onClick={(partName) => console.log(`Clicked on: ${partName}`)} // Handle click
+        /> */}
+
+        <GLTFModelLoader
+          modelPath="soccer_stadium.glb"
+          position={[-100, -25, -1600]}
+          rotation={[0, 1.56, 0]}
+          scale={1.3}
+          visible={true}
+          onClick={(partName) => console.log(`Clicked on: ${partName}`)}
+          />
+          
+        <GLTFModelLoader
+          modelPath="basket_ball_ground_3d_model.glb"
+          position={[1350, 55, -2000]}
+          rotation={[0, -1.56, 0]}
+          scale={2}
+          visible={true}
+          onClick={(partName) => console.log(`Clicked on: ${partName}`)}
         />
 
-        {/* <GLTFModelLoader 
-          modelPath="/research.glb" // Path to the GLTF model
-          position={[-250, 0, 1100]} // Adjust position as needed
-          rotation={[0, 1.55, 0]} // Adjust rotation as needed
-          scale={4} // Adjust scale as needed
-          visible= {true}// {isVisible(`${houseId}-restaurant`)} // Control visibility
-          onClick={(partName) => console.log(`Clicked on: ${partName}`)} // Handle click
+       <GLTFModelLoader
+          modelPath="cafe__clinic.glb"
+          position={[2800, -50, -1100]}
+          rotation={[0, -1.56, 0]}
+          scale={8} 
+          visible={true}
+          onClick={(partName) => console.log(`Clicked on: ${partName}`)}
         />
+        
 
-
-          <GLTFModelLoader 
-          modelPath="/b1.glb" // Path to the GLTF model
-          position={[78, 0, 1160]} // Adjust position as needed
-          rotation={[0, 1.55, 0]} // Adjust rotation as needed
-          scale={8} // Adjust scale as needed
-          visible= {true}// {isVisible(`${houseId}-restaurant`)} // Control visibility
-          onClick={(partName) => console.log(`Clicked on: ${partName}`)} // Handle click
+        <GLTFModelLoader
+          modelPath="proposta_12x30_sicredi_saltinho.glb"
+          position={[-140, -50, 1700]}
+          rotation={[0, 1.56, 0]}
+          scale={1}
+          visible={true}
+          onClick={(partName) => console.log(`Clicked on: ${partName}`)}
         />
+        
          
-        {/* <Main Bash Road> */}
+        { /* <Main Bash Road> */ }
 
         <mesh position={[90, -50, -148]}>
-          <boxGeometry args={[1680, 1, 2107]} />
+          <boxGeometry args={[3500, 1, 5307]} />
           <meshStandardMaterial color="#bdbdbd" />
         </mesh>
         
-        <FourSideWall 
+        {/* <FourSideWall 
          X1={-750}
          X2={930}
          Z1={-1200}
@@ -462,7 +481,7 @@ export function Viewer3D({
          FENCE_HEIGHT={FENCE_HEIGHT}
          FENCE_SPACING={FENCE_SPACING}
          FENCE_GROUP_POSITION={FENCE_GROUP_POSITION}
-       />
+       /> */}
 
         {/* <gridHelper args={[100, 100]} /> */}
         {/* <axesHelper args={[5]} /> */}
