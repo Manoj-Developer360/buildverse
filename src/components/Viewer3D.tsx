@@ -417,14 +417,14 @@ export function Viewer3D({
         />
 
 
-        {/* <GLTFModelLoader
+        <GLTFModelLoader
           modelPath="/gate.glb" // Path to the GLTF model
-          position={[500, -50, 900]} // Adjust position as needed
+          position={[850, -50, 2500]} // Adjust position as needed
           rotation={[0, 0, 0]} // Adjust rotation as needed
-          scale={250} // Adjust scale as needed
+          scale={300} // Adjust scale as needed
           visible={true} // {isVisible(`${houseId}-restaurant`)} // Control visibility
           onClick={(partName) => console.log(`Clicked on: ${partName}`)} // Handle click
-        /> */}
+        />
 
         <GLTFModelLoader
           modelPath="soccer_stadium.glb"
@@ -456,7 +456,7 @@ export function Viewer3D({
 
         <GLTFModelLoader
           modelPath="proposta_12x30_sicredi_saltinho.glb"
-          position={[-140, -50, 1700]}
+          position={[-230, -50, 1700]}
           rotation={[0, 1.56, 0]}
           scale={1}
           visible={true}
@@ -471,7 +471,7 @@ export function Viewer3D({
           <meshStandardMaterial color="#bdbdbd" />
         </mesh>
         
-        {/* <FourSideWall 
+        <FourSideWall 
          X1={-750}
          X2={930}
          Z1={-1200}
@@ -481,7 +481,7 @@ export function Viewer3D({
          FENCE_HEIGHT={FENCE_HEIGHT}
          FENCE_SPACING={FENCE_SPACING}
          FENCE_GROUP_POSITION={FENCE_GROUP_POSITION}
-       /> */}
+       />
 
         {/* <gridHelper args={[100, 100]} /> */}
         {/* <axesHelper args={[5]} /> */}
