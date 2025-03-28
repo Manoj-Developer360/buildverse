@@ -34,6 +34,7 @@ export function Sidebar() {
           <FileText className="h-4 w-4" />
           {sidebarExpanded && <span className="ml-2">Reports</span>}
         </Link>
+        
         {/* <Link to="/analytics" className={`flex items-center p-2 rounded-lg ${location.pathname === '/analytics' ? 'bg-accent' : ''}`}>
           <LineChart className="h-4 w-4" />
           {sidebarExpanded && <span className="ml-2">Data & Insights</span>}

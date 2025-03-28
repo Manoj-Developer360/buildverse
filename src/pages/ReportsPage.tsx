@@ -210,7 +210,7 @@ const ReportsPage: React.FC = () => {
               {/* <option value="CSV">CSV </option>
               <option value="Excel">Excel</option> */}
             </select>
-          </div>
+          </div><br/>
           <Button onClick={handleDownload} className="mt-4">
             Download Report
           </Button>
