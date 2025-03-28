@@ -292,6 +292,9 @@ const DetailsPage: React.FC<DetailsPageProps> = ({ nodes }) => {
                   ))
                 ) : (
                   <li className="text-gray-400 italic">No checklist items</li>
+
+
+
                 )}
               </ul>
             </div>
