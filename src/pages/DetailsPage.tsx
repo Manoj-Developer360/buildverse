@@ -407,10 +407,10 @@ const DetailsPage: React.FC<DetailsPageProps> = ({ nodes }) => {
         <div className="w-3/4 bg-black rounded-lg shadow-lg overflow-hidden">
           <ReactPlayer width="100%" height="100%" url='http://localhost:4000/output.m3u8' playing={true} loop={true} />
         </div>
-        <div className="flex flex-col w-1/4 bg-white p-4 rounded-lg shadow-lg">
+        {/* <div className="flex flex-col w-1/4 bg-white p-4 rounded-lg shadow-lg">
           <h3 className="font-semibold mb-2">Real-Time Occupancy</h3>
           <RealLiveOccupancy />
-        </div>
+        </div> */}
       </div>
     </TabsContent>
 

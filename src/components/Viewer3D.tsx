@@ -409,7 +409,7 @@ export function Viewer3D({
 
           <GLTFModelLoader
           modelPath="building.glb" // Path to the GLTF model
-          position={[-700, -49, 400]} // Adjust position as needed
+          position={[-700, -49, 700]} // Adjust position as needed
           rotation={[0, 3.14, 0]} // Adjust rotation as needed
           scale={800} // Adjust scale as needed
           visible={true} // {isVisible(`${houseId}-restaurant`)} // Control visibility
@@ -437,7 +437,7 @@ export function Viewer3D({
           
         <GLTFModelLoader
           modelPath="basket_ball_ground_3d_model.glb"
-          position={[1350, 55, -2000]}
+          position={[1420, 55, -2100]}
           rotation={[0, -1.56, 0]}
           scale={2}
           visible={true}
@@ -446,7 +446,7 @@ export function Viewer3D({
 
        <GLTFModelLoader
           modelPath="cafe__clinic.glb"
-          position={[2800, -50, -1100]}
+          position={[2850, -50, -1100]}
           rotation={[0, -1.56, 0]}
           scale={8} 
           visible={true}
@@ -456,7 +456,7 @@ export function Viewer3D({
 
         <GLTFModelLoader
           modelPath="proposta_12x30_sicredi_saltinho.glb"
-          position={[-230, -50, 1700]}
+          position={[-230, -50, 2200]}
           rotation={[0, 1.56, 0]}
           scale={1}
           visible={true}
