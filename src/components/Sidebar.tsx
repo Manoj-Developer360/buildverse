@@ -1,5 +1,11 @@
 import { Button } from "@/components/ui/button"
-import { Menu, LayoutDashboard, LineChart, FileText, Settings } from "lucide-react"
+import {
+  Menu,
+  LayoutDashboard,
+  FileText,
+  Settings,
+  ShieldCheck
+} from "lucide-react"
 import { useLayout } from "@/contexts/layout-context"
 import { Link, useLocation } from 'react-router-dom'
 
@@ -13,6 +19,7 @@ export function Sidebar() {
         sidebarExpanded ? 'w-64' : 'w-16'
       } mt-20 rounded-xl fixed left-0 top-0`}
     >
+      {/* Sidebar toggle button */}
       <Button
         variant="ghost"
         size="icon"
@@ -21,33 +28,67 @@ export function Sidebar() {
       >
         <Menu className="h-4 w-4" />
       </Button>
+
+      {/* Navigation Links */}
       <nav className="flex flex-col gap-2 p-4 mt-12">
-        <Link to="/" className={`flex items-center p-2 rounded-lg ${location.pathname === '/' ? 'bg-accent' : ''}`}>
+        <Link
+          to="/"
+          className={`flex items-center p-2 rounded-lg ${
+            location.pathname === '/' ? 'bg-accent' : ''
+          }`}
+        >
           <LayoutDashboard className="h-4 w-4" />
           {sidebarExpanded && <span className="ml-2">Home</span>}
         </Link>
-        <Link to="/details" className={`flex items-center p-2 rounded-lg ${location.pathname === '/details' ? 'bg-accent' : ''}`}>
+
+        <Link
+          to="/details"
+          className={`flex items-center p-2 rounded-lg ${
+            location.pathname === '/details' ? 'bg-accent' : ''
+          }`}
+        >
           <FileText className="h-4 w-4" />
           {sidebarExpanded && <span className="ml-2">Details</span>}
         </Link>
-        <Link to="/reports" className={`flex items-center p-2 rounded-lg ${location.pathname === '/reports' ? 'bg-accent' : ''}`}>
+
+        <Link
+          to="/reports"
+          className={`flex items-center p-2 rounded-lg ${
+            location.pathname === '/reports' ? 'bg-accent' : ''
+          }`}
+        >
           <FileText className="h-4 w-4" />
           {sidebarExpanded && <span className="ml-2">Reports</span>}
         </Link>
-        
-        {/* <Link to="/analytics" className={`flex items-center p-2 rounded-lg ${location.pathname === '/analytics' ? 'bg-accent' : ''}`}>
-          <LineChart className="h-4 w-4" />
-          {sidebarExpanded && <span className="ml-2">Data & Insights</span>}
-        </Link> */}
-        <Link to="/iot" className={`flex items-center p-2 rounded-lg ${location.pathname === '/iot' ? 'bg-accent' : ''}`}>
+
+        <Link
+          to="/iot"
+          className={`flex items-center p-2 rounded-lg ${
+            location.pathname === '/iot' ? 'bg-accent' : ''
+          }`}
+        >
           <Settings className="h-4 w-4" />
           {sidebarExpanded && <span className="ml-2">IoT Integrations</span>}
         </Link>
-        <Link to="/settings" className={`flex items-center p-2 rounded-lg ${location.pathname === '/settings' ? 'bg-accent' : ''}`}>
+
+        <Link
+          to="/settings"
+          className={`flex items-center p-2 rounded-lg ${
+            location.pathname === '/settings' ? 'bg-accent' : ''
+          }`}
+        >
           <Settings className="h-4 w-4" />
           {sidebarExpanded && <span className="ml-2">Settings</span>}
         </Link>
+
+        {/* ✅ Admin Panel Link */}
+        <Link to="/admin" className={`flex items-center p-2 rounded-lg ${location.pathname === '/admin' ? 'bg-accent' : ''}`}>
+  
+  <ShieldCheck className="h-4 w-4" />
+          {sidebarExpanded && <span className="ml-2">Admin</span>}
+</Link>
+
       </nav>
     </div>
   )
-} 
+}

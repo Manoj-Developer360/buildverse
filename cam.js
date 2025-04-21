@@ -22,7 +22,7 @@ await ensureCameraDir();
 
 // Configuration
 const config = {
-    rtspUrl: 'rtsp://192.168.1.7:8080/h264_ulaw.sdp',//rtsp://192.168.1.5?user=admin&passwpord=234&channel=1
+    rtspUrl: 'rtsp://192.168.167.98:8080/h264_ulaw.sdp',//rtsp://192.168.1.5?user=admin&passwpord=234&channel=1
     outputDir: cameraDir,
     segmentLength: 2,
     listSize: 10,
