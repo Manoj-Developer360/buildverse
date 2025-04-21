@@ -10,6 +10,7 @@ import ReportsPage from './pages/ReportsPage'
 import SettingsPage from './pages/SettingsPage'
 import IoTPage from './pages/IoTPage'
 import DashboardPage from './pages/DashboardPage'
+import AdminPanel from './pages/AdminPanel' // 👈 Make sure this import is added
 
 function App() {
   // const [selectedNodeId, setSelectedNodeId] = useState<string | undefined>()
@@ -19,7 +20,7 @@ function App() {
   // Initialize visibility state from houseTreeData
   useEffect(() => {
     const initialVisibility: Record<string, boolean> = {}
-    
+
     const initNodeVisibility = (nodes: TreeNode[]) => {
       nodes.forEach(node => {
         initialVisibility[node.id] = node.visible ?? true
@@ -44,7 +45,7 @@ function App() {
   //     [nodeId]: !prev[nodeId]
   //   }))
   // }
-  
+
   return (
     <Router>
       <LayoutProvider>
@@ -56,11 +57,12 @@ function App() {
             <Route path="/analytics" element={<DashboardPage />} />
             <Route path="/iot" element={<IoTPage />} />
             <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/admin" element={<AdminPanel />} /> {/* ✅ Admin route added here */}
           </Routes>
-         </Layout>
+        </Layout>
       </LayoutProvider>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App
