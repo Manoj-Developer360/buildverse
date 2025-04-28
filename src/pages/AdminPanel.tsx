@@ -7,22 +7,24 @@ import * as Papa from 'papaparse';
 
 interface Block {
   id: number;
-  name: string;
-  totalCost: string;
-  status: string;
-  lastMaintenance: string;
-  nextMaintenance: string;
+  building: string;
+  item: string;
+  type: string;
+  quantity: string;
+  unit: string;
+  cost: string;
 }
 
 const AdminPanel: React.FC = () => {
   const [blocks, setBlocks] = useState<Block[]>([]);
   const [formData, setFormData] = useState<Block>({
     id: 0,
-    name: '',
-    totalCost: '',
-    status: '',
-    lastMaintenance: '',
-    nextMaintenance: '',
+    building: '',
+    item: '',
+    type: '',
+    quantity: '',
+    unit: '',
+    cost: '',
   });
   const [file, setFile] = useState<File | null>(null);
 
@@ -35,12 +37,12 @@ const AdminPanel: React.FC = () => {
   };
 
   const handleSubmit = () => {
-    if (!formData.name || !formData.totalCost || !formData.status) {
+    if (!formData.building || !formData.item || !formData.type) {
       toast.error('Please fill in all required fields');
       return;
     }
 
-    if (formData.id) {
+    if (formData.id !== 0) {
       setBlocks((prev) =>
         prev.map((block) => (block.id === formData.id ? formData : block))
       );
@@ -51,16 +53,17 @@ const AdminPanel: React.FC = () => {
         id: Date.now(),
       };
       setBlocks((prev) => [...prev, newBlock]);
-      toast.success('Block added!');
+      toast.success('Block created successfully!');
     }
 
     setFormData({
       id: 0,
-      name: '',
-      totalCost: '',
-      status: '',
-      lastMaintenance: '',
-      nextMaintenance: '',
+      building: '',
+      item: '',
+      type: '',
+      quantity: '',
+      unit: '',
+      cost: '',
     });
   };
 
@@ -70,150 +73,136 @@ const AdminPanel: React.FC = () => {
 
   const handleDelete = (id: number) => {
     setBlocks((prev) => prev.filter((block) => block.id !== id));
-    toast.success('Block deleted!');
+    toast.success('Block deleted successfully!');
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
+    if (e.target.files?.length) {
       setFile(e.target.files[0]);
     }
   };
 
   const handleImport = () => {
     if (!file) {
-      toast.error('Please select a file to import.');
+      toast.error('Please select a CSV file to import.');
       return;
     }
 
-    Papa.parse(file as File, {
+    Papa.parse(file, {
       complete: (result) => {
-        const importedBlocks = result.data.map((row: any) => ({
-          id: Date.now(),
-          name: row[0],
-          totalCost: row[1],
-          status: row[2],
-          lastMaintenance: row[3],
-          nextMaintenance: row[4],
-        }));
-        setBlocks(importedBlocks);
+        const importedBlocks = (result.data as string[][])
+          .filter((row, index) => {
+            if (index === 0) return false; // Ignore header
+            return row.length >= 6;
+          })
+          .map((row) => ({
+            id: Date.now() + Math.random(),
+            building: row[0] || '',
+            item: row[1] || '',
+            type: row[2] || '',
+            quantity: row[3] || '',
+            unit: row[4] || '',
+            cost: row[5] || '',
+          }));
+        setBlocks((prev) => [...prev, ...importedBlocks]);
         toast.success('Blocks imported successfully!');
       },
       header: false,
+      skipEmptyLines: true,
     });
   };
 
   return (
-    <div className="p-6 mt-20 bg-white shadow-lg rounded-xl max-w-6xl mx-auto">
+    <div className="p-8 mt-20 bg-gradient-to-br from-white to-gray-100 shadow-2xl rounded-2xl max-w-7xl mx-auto">
       <Toaster />
-      <h2 className="text-3xl font-semibold text-gray-800 mb-6">🔧 Admin Panel</h2>
+      <h2 className="text-4xl font-bold text-gray-800 mb-8 text-center">🏢 Building Blocks Management</h2>
+
+      {/* File Upload Section */}
+      <div className="flex flex-col md:flex-row items-center mb-10 gap-4">
+        <input
+          type="file"
+          accept=".csv"
+          onChange={handleFileChange}
+          className="border border-gray-300 bg-white rounded-lg p-3 text-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-400 w-full md:w-auto"
+        />
+        <Button
+          onClick={handleImport}
+          className="bg-gray-800 text-white px-8 py-3 rounded-lg hover:bg-gray-700 w-full md:w-auto"
+        >
+          Import CSV
+        </Button>
+      </div>
 
       {/* Form Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-  <input
-    type="text"
-    name="name"
-    placeholder="Block Name"
-    value={formData.name}
-    onChange={handleChange}
-    className="border border-gray-300 bg-white rounded-lg p-3 text-black focus:outline-none focus:ring-2 focus:ring-gray-500"
-  />  
-  <input
-    type="number"
-    name="totalCost"
-    placeholder="Total Cost"
-    value={formData.totalCost}
-    onChange={handleChange}
-    className="border border-gray-300 bg-white rounded-lg p-3 text-black focus:outline-none focus:ring-2 focus:ring-gray-500"
-  />
-  <input
-    type="text"
-    name="status"
-    placeholder="Status"
-    value={formData.status}
-    onChange={handleChange}
-    className="border border-gray-300 bg-white rounded-lg p-3 text-black focus:outline-none focus:ring-2 focus:ring-gray-500"
-  />
-  <input
-    type="date"
-    name="lastMaintenance"
-    value={formData.lastMaintenance}
-    onChange={handleChange}
-    className="border border-gray-300 bg-white rounded-lg p-3 text-black focus:outline-none focus:ring-2 focus:ring-gray-500"
-  />
-  <input
-    type="date"
-    name="nextMaintenance"
-    value={formData.nextMaintenance}
-    onChange={handleChange}
-    className="border border-gray-300 bg-white rounded-lg p-3 text-black focus:outline-none focus:ring-2 focus:ring-gray-500"
-  />
-</div>
-
-
-      <Button onClick={handleSubmit} className="bg-gray-600 text-white px-6 py-2 rounded-lg hover:bg-gray-700">
-        {formData.id ? 'Update Block' : 'Add Block'}
-      </Button>
-
-      {/* Import CSV Section */}
-      <div className="mt-6 mb-6">
-  <input
-    type="file"
-    onChange={handleFileChange}
-    accept=".csv"
-    className="border border-gray-300 bg-white rounded-lg p-3 text-black focus:outline-none focus:ring-2 focus:ring-gray-500"
-  />
-  <Button 
-    onClick={handleImport} 
-    className="bg-gray-600 text-white px-6 py-2 rounded-lg hover:bg-gray-700 ml-4"
-  >
-    Import CSV
-  </Button>
-</div>
-
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        {['building', 'item', 'type', 'quantity', 'unit', 'cost'].map((field) => (
+          <input
+            key={field}
+            type="text"
+            name={field}
+            value={(formData as any)[field]}
+            onChange={handleChange}
+            placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+            className="border border-gray-400 bg-gray-50 rounded-lg p-3 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400"
+          />
+        ))}
+        <Button
+          onClick={handleSubmit}
+          className="col-span-1 md:col-span-3 bg-gray-800 text-white py-3 rounded-lg hover:bg-gray-700"
+        >
+          {formData.id ? 'Update Block' : 'Add Block'}
+        </Button>
+      </div>
 
       {/* Table Section */}
-      <div className="mt-10">
-        <h3 className="text-xl font-semibold text-gray-800 mb-4">📋 Managed Blocks</h3>
-        <div className="overflow-x-auto">
-          <table className="min-w-full border border-gray-200 rounded-lg text-left">
-            <thead className="bg-gray-50 text-sm text-gray-600">
-              <tr>
-                <th className="p-4">Name</th>
-                <th className="p-4">Total Cost</th>
-                <th className="p-4">Status</th>
-                <th className="p-4">Last Maint.</th>
-                <th className="p-4">Next Maint.</th>
-                <th className="p-4">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {blocks.map((block) => (
-                <tr key={block.id} className="border-t hover:bg-gray-50">
-                  <td className="p-4 text-gray-700">{block.name}</td>
-                  <td className="p-4 text-gray-700">${block.totalCost}</td>
-                  <td className="p-4 text-gray-700">{block.status}</td>
-                  <td className="p-4 text-gray-700">{block.lastMaintenance}</td>
-                  <td className="p-4 text-gray-700">{block.nextMaintenance}</td>
-                  <td className="p-4 space-x-2">
-                    <Button onClick={() => handleEdit(block)} className="bg-yellow-500 text-white px-3 py-1 rounded-lg">
+      <div className="overflow-x-auto rounded-lg shadow-lg">
+        <table className="min-w-full table-auto border border-gray-300">
+          <thead className="bg-gray-900 text-white">
+            <tr>
+              <th className="px-6 py-4 text-left">Building</th>
+              <th className="px-6 py-4 text-left">Item</th>
+              <th className="px-6 py-4 text-left">Type</th>
+              <th className="px-6 py-4 text-left">Quantity</th>
+              <th className="px-6 py-4 text-left">Unit</th>
+              <th className="px-6 py-4 text-left">Cost</th>
+              <th className="px-6 py-4 text-left">Actions</th>
+            </tr>
+          </thead>
+          <tbody className="bg-white text-gray-700">
+            {blocks.length > 0 ? (
+              blocks.map((block) => (
+                <tr key={block.id} className="border-b border-gray-200 hover:bg-gray-100">
+                  <td className="px-6 py-4">{block.building}</td>
+                  <td className="px-6 py-4">{block.item}</td>
+                  <td className="px-6 py-4">{block.type}</td>
+                  <td className="px-6 py-4">{block.quantity}</td>
+                  <td className="px-6 py-4">{block.unit}</td>
+                  <td className="px-6 py-4">Rs. {parseFloat(block.cost).toFixed(4)}</td>
+                  <td className="px-6 py-4 space-y-2">
+                    <Button
+                      onClick={() => handleEdit(block)}
+                      className="w-full bg-gray-700 text-white text-sm py-2 rounded-lg hover:bg-gray-600" 
+                    >
                       Edit
                     </Button>
-                    <Button onClick={() => handleDelete(block.id)} className="bg-red-600 text-white px-3 py-1 rounded-lg">
+                    <Button
+                      onClick={() => handleDelete(block.id)}
+                      className="w-full bg-gray-500 text-white text-sm py-2 rounded-lg hover:bg-gray-600"
+                    >
                       Delete
                     </Button>
                   </td>
                 </tr>
-              ))}
-              {blocks.length === 0 && (
-                <tr>
-                  <td colSpan={6} className="text-center p-4 text-gray-400">
-                    No blocks added yet.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={7} className="text-center px-6 py-12 text-gray-400">
+                  No building blocks added yet.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
       </div>
     </div>
   );
